@@ -1,5 +1,5 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-import { NextResponse } from "next/server";
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
+import { NextResponse } from "next/server"
 
 const uri = "mongodb+srv://kanbanAppTask:NJ7PMZW0i6ye71nZ@cluster0.c8viahs.mongodb.net/?retryWrites=true&w=majority";
 
@@ -15,23 +15,15 @@ const client = new MongoClient(uri, {
 const database = client.db("kanbanAppTask");
 const taskCollection = database.collection("task");
 
-export async function GET(request) {
+export async function DELETE(request, content) {
+    let id = content.params.id
     try {
-        const result = await taskCollection.find({}).toArray();
-        // console.log(result);
-        return NextResponse.json(result)
-    }
-    finally { }
-}
-
-export async function POST(request) {
-    try {
-        const body = await request.json()
-        console.log(body);
-        const result = await taskCollection.insertOne(body);
-        return NextResponse.json(result)
+        const query = { _id: new ObjectId(id) };
+        const result = await taskCollection.deleteOne(query);
+        if (result.deletedCount === 1) {
+            return NextResponse.json({ result })
+        }
     } catch (error) {
         console.log(error);
     }
 }
-

@@ -18,22 +18,20 @@ const Board = () => {
     }, []);
 
     return (
-        <div className='mx-auto w-3/4 mt-5'>
-            <div className='flex gap-6'>
-                <div className='bg-pink-200 rounded-lg w-full h-fit'>
-                    <h1 className='text-center my-2 font-medium'>To Do</h1>
-                    {
-                        data.map((item) => {
-                            return <TaskCard key={item._id} taskData={item} />
-                        })
-                    }
-                </div>
-                <div className='bg-pink-200 rounded-lg w-full h-fit'>
-                    <h1 className='text-center my-2 font-medium'>Doing</h1>
-                </div>
-                <div className='bg-pink-200 rounded-lg w-full h-fit'>
-                    <h1 className='text-center my-2 font-medium'>Done</h1>
-                </div>
+        <div className='flex gap-6 mx-auto w-3/4 mt-5'>
+            <div className='bg-pink-200 rounded-lg w-full h-full'>
+                <h1 className='text-center my-2 font-medium'>To Do</h1>
+                {
+                    data.map((item) => {
+                        return <TaskCard key={item._id} taskData={item} />
+                    })
+                }
+            </div>
+            <div className='bg-pink-200 rounded-lg w-full h-full'>
+                <h1 className='text-center my-2 font-medium'>Doing</h1>
+            </div>
+            <div className='bg-pink-200 rounded-lg w-full h-full'>
+                <h1 className='text-center my-2 font-medium'>Done</h1>
             </div>
         </div>
     )

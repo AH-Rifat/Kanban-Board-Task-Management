@@ -4,5 +4,6 @@
 
 body{
     background-color: #79155B;
-    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
 }
